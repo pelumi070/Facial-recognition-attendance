@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="ri-fingerprint-line"></i>
+                <span>SmartScan</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-target="dashboard">
+                    <i class="ri-dashboard-line"></i> Dashboard
+                </li>
+                <li data-target="scanner">
+                    <i class="ri-focus-3-line"></i> Live Scanner
+                </li>
+                <li data-target="register">
+                    <i class="ri-user-add-line"></i> Register
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Dashboard View -->
+            <section id="dashboard" class="view-section active">
+                <header>
+                    <h1>Attendance Dashboard</h1>
+                    <p>Real-time overview of attendance logs.</p>
+                </header>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="ri-user-line"></i></div>
+                        <div class="stat-info">
+                            <h3>Total Scans Today</h3>
+                            <p id="total-scans">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="ri-group-line"></i></div>
+                        <div class="stat-info">
+                            <h3>Registered Users</h3>
+                            <p id="total-users">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tables-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h2>Recent Logs</h2>
+                            <button id="refresh-logs" class="btn btn-outline"><i class="ri-refresh-line"></i> Refresh</button>
+                        </div>
+                        <table id="logs-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Logs will be injected here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h2>Registered Students</h2>
+                        </div>
+                        <table id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Student ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Users will be injected here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scanner View -->
+            <section id="scanner" class="view-section">
+                <header>
+                    <h1>Live Scanner</h1>
+                    <p>Face the camera to mark your attendance.</p>
+                </header>
+
+                <div class="scanner-container">
+                    <div class="video-wrapper">
+                        <video id="attendance-video" autoplay playsinline></video>
+                        <canvas id="attendance-canvas" style="display: none;"></canvas>
+                        <div class="scanner-overlay">
+                            <div class="scan-line"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="scanner-controls">
+                        <button id="start-scan-btn" class="btn btn-primary"><i class="ri-camera-lens-line"></i> Start Camera</button>
+                        <button id="mark-attendance-btn" class="btn btn-success" disabled><i class="ri-check-line"></i> Mark Attendance</button>
+                    </div>
+
+                    <div id="scanner-result" class="status-message"></div>
+                </div>
+            </section>
+
+            <!-- Register View -->
+            <section id="register" class="view-section">
+                <header>
+                    <h1>Register New User</h1>
+                    <p>Add a new face to the system database.</p>
+                </header>
+
+                <div class="register-container">
+                    <div class="form-group">
+                        <label for="user-name">Full Name</label>
+                        <input type="text" id="user-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-id">Student / Employee ID</label>
+                        <input type="text" id="student-id" placeholder="STD-1001" required>
+                    </div>
+
+                    <div class="video-capture-section">
+                        <div class="video-wrapper sm">
+                            <video id="register-video" autoplay playsinline></video>
+                            <canvas id="register-canvas" style="display: none;"></canvas>
+                        </div>
+                        <button id="start-register-cam-btn" class="btn btn-outline">Enable Camera</button>
+                    </div>
+
+                    <button id="capture-register-btn" class="btn btn-primary btn-block" disabled>Register Profile</button>
+                    
+                    <div id="register-result" class="status-message"></div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
