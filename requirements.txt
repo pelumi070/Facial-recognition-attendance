@@ -3,5 +3,5 @@ uvicorn
 opencv-contrib-python
 pydantic
 sqlalchemy
-python-multipart
+python-multipartgit 
 pandas
