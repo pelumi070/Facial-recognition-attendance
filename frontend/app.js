@@ -1,4 +1,4 @@
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = 'http://facial-recognition-attendance-3.onrender.com';
 
 // Navigation
 const navLinks = document.querySelectorAll('.nav-links li');
